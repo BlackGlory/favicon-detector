@@ -1,0 +1,20 @@
+{
+  "presets": [
+    "react"
+  , ["env", {
+      "targets": {
+        "browsers": ["last 10 Chrome versions"]
+      }
+    }]
+  ]
+, "plugins": [
+    ["transform-runtime", {
+      "helpers": false,
+      "polyfill": false,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
+    }]
+  , "transform-class-properties"
+  , "syntax-class-properties"
+  ]
+}

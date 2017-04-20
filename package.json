@@ -1,0 +1,34 @@
+{
+  "name": "favicon-detector",
+  "version": "1.0.0",
+  "repository": "git@github.com:BlackGlory/favicon-detector.git",
+  "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack -w",
+    "build": "webpack",
+    "size": "webpack --json | webpack-bundle-size-analyzer"
+  },
+  "dependencies": {
+    "antd": "^2.9.1",
+    "object-hash": "^1.1.8",
+    "parse-favicon": "^1.1.6",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "styled-components": "^1.4.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.4.1",
+    "webpack-bundle-size-analyzer": "^2.6.0"
+  }
+}
