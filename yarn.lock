@@ -2639,9 +2639,9 @@ parse-asn1@^5.0.0:
     evp_bytestokey "^1.0.0"
     pbkdf2 "^3.0.3"
 
-parse-favicon@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/parse-favicon/-/parse-favicon-1.2.3.tgz#848fba9740c90bde9081d6a8f07450f3c78d6c9c"
+parse-favicon@^1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/parse-favicon/-/parse-favicon-1.2.8.tgz#2c1016aa97f142afa48792ee7ac4c7b7cf0e82a4"
   dependencies:
     axios "^0.15.3"
     cheerio "^0.22.0"

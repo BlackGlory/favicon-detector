@@ -16,12 +16,17 @@ const Window = styled.div`
   overflow-x: hidden;
 `
 
-const Image = styled.img`
+const Img = styled.img`
   max-width: 256px;
 `
 
 function computeArea(size) {
-  return size.split('x').map(Number).reduce((m, n) => m * n, 1)
+  const sizeRegexp = /^\d+x\d+$/ // example: 16x16
+  if (sizeRegexp.test(size)) {
+    return size.split('x').map(Number).reduce((m, n) => m * n, 1)
+  } else {
+    return 0
+  }
 }
 
 function getPageInfo() {
@@ -55,20 +60,30 @@ function setClipboard(text, successText) {
   message.success(successText)
 }
 
+function getImageSize(url) {
+  return new Promise((resolve, reject) => {
+    let img = new Image()
+    img.addEventListener('load', () => {
+      resolve(`${ img.width }x${ img.height }`)
+    })
+    img.addEventListener('error', reject)
+    img.src = url
+  })
+}
+
 export default class Popup extends Component {
   columns = [
     {
       title: 'Icon'
     , dataIndex: 'url'
     , key: 'icon'
-    , render: url => <a onClick={ () => setClipboard(url, 'Icon url copied!') }><Image src={ url } /></a>
+    , render: url => <a onClick={ () => setClipboard(url, 'Icon url copied!') }><Img src={ url } /></a>
     }
   , {
       title: 'Size'
     , dataIndex: 'size'
     , key: 'size'
     , sorter: (a, b) => computeArea(a.size) - computeArea(b.size)
-    , sortOrder: 'ascend'
     }
   , {
       title: 'Type'
@@ -95,6 +110,11 @@ export default class Popup extends Component {
           , allowUseNetwork: true
           , allowParseImage: true
           })
+      for (let i in icons) {
+        if (!icons[i].size) {
+          icons[i].size = await getImageSize(icons[i].url)
+        }
+      }
       this.setState({
         loading: false
       , data: icons

@@ -1,6 +1,6 @@
 {
   "name": "favicon-detector",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "git@github.com:BlackGlory/favicon-detector.git",
   "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
   "license": "MIT",
@@ -13,7 +13,7 @@
   "dependencies": {
     "antd": "^2.9.1",
     "object-hash": "^1.1.8",
-    "parse-favicon": "^1.2.3",
+    "parse-favicon": "^1.2.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "styled-components": "^1.4.5"
