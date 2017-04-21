@@ -5,6 +5,7 @@ module.exports = {
   target: 'web'
 , node: {
     fs: 'empty'
+  , net: 'empty'
   }
 , entry: {
     'popup': './src/loader.js'
