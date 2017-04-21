@@ -5,7 +5,9 @@ import styled from 'styled-components'
 import parseFavicon from 'parse-favicon'
 import hash from 'object-hash'
 import Table from 'antd/lib/table'
+import message from 'antd/lib/message'
 import 'antd/lib/table/style/css'
+import 'antd/lib/message/style/css'
 
 const Window = styled.div`
   width: 800px;
@@ -20,6 +22,26 @@ const Image = styled.img`
 
 function computeArea(size) {
   return size.split('x').map(Number).reduce((m, n) => m * n, 1)
+}
+
+function getPageInfo() {
+  return new Promise((resolve, reject) => {
+    try {
+      chrome.tabs.executeScript({
+        code: `({
+          url: document.URL
+        , html: document.querySelector('html').outerHTML
+        })`
+      }, (result) => {
+        if (chrome.runtime.lastError) {
+          return reject(chrome.runtime.lastError)
+        }
+        return resolve(result[0])
+      })
+    } catch(e) {
+      return reject(e)
+    }
+  })
 }
 
 export default class Popup extends Component {
@@ -54,24 +76,24 @@ export default class Popup extends Component {
   , data: []
   }
 
-  componentDidMount() {
-    chrome.tabs.executeScript({
-      code: `({
-        url: document.URL
-      , html: document.querySelector('html').outerHTML
-      })`
-    }, async ([{ url, html }]) => {
-      let icons = await parseFavicon(html, {
-        baseURI: url
-      , allowUseNetwork: true
-      , allowParseImage: true
-      })
-
+  async componentDidMount() {
+    try {
+      let { url, html } = await getPageInfo()
+        , icons = await parseFavicon(html, {
+            baseURI: url
+          , allowUseNetwork: true
+          , allowParseImage: true
+          })
       this.setState({
         loading: false
       , data: icons
       })
-    })
+    } catch(e) {
+      this.setState({
+        loading: false
+      })
+      message.error(e.message, NaN)
+    }
   }
 
   render() {

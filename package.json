@@ -1,6 +1,6 @@
 {
   "name": "favicon-detector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "git@github.com:BlackGlory/favicon-detector.git",
   "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
   "license": "MIT",
@@ -9,6 +9,7 @@
     "build": "webpack",
     "size": "webpack --json | webpack-bundle-size-analyzer"
   },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkRQGhQtxVngxnfz5BysYrl0QF7clqlrdOhQw0BnnuG8k5Ay6Fs3kbpWuXAee7pu2kEQ/+V91IUA6JrT3MswMF3oDWT5gap2+oRq6rZBwz1PWuFpxCimu6XJrVZZmgS+jS4xmmhFVS24CVw5QiEmE2iRLvRnCJLvsvqAuNo5Pv+WuQNciT05NIwgxfFaO5CGq8fvQ0imFtpfc8frCcTBWvbLVRMWj+N+4UQqGJv/qQWvLJPKERl1CgciFsuK1Uh7HX6fH2UsXt4H4gNVr5vmAIQqxEX9Q/qlcJ/4JYgydoGsHDNDby++c4XjWiPr1y6tUCrHSvNM3qp9EauTpTh6oLQIDAQAB",
   "dependencies": {
     "antd": "^2.9.1",
     "object-hash": "^1.1.8",
