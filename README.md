@@ -2,4 +2,4 @@
 
 [![favicon-detector](https://raw.githubusercontent.com/BlackGlory/favicon-detector/master/src/assets/images/icon-128.png)](https://chrome.google.com/webstore/detail/favicon-detector/jlfeffjhgmgblofcgpbgpkkhfniipejm)
 
-A simple way to detect website icons based on [parse-favicon: Parse HTML to get favicon information](https://github.com/BlackGlory/parse-favicon) library.
+A simple way to detect website icons based on [parse-favicon](https://github.com/BlackGlory/parse-favicon) library.

@@ -44,13 +44,24 @@ function getPageInfo() {
   })
 }
 
+function setClipboard(text, successText) {
+  let textarea = document.createElement('textarea')
+  textarea.textContent = text
+  let body = document.querySelector('body')
+  body.appendChild(textarea)
+  textarea.select()
+  document.execCommand('Copy', false, null)
+  body.removeChild(textarea)
+  message.success(successText)
+}
+
 export default class Popup extends Component {
   columns = [
     {
       title: 'Icon'
     , dataIndex: 'url'
     , key: 'icon'
-    , render: url => <Image src={ url } />
+    , render: url => <a onClick={ () => setClipboard(url, 'Icon url copied!') }><Image src={ url } /></a>
     }
   , {
       title: 'Size'
