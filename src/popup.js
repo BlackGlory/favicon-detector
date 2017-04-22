@@ -109,10 +109,14 @@ export default class Popup extends Component {
             baseURI: url
           , allowUseNetwork: true
           , allowParseImage: true
-          })
+          }, true)
       for (let i in icons) {
         if (!icons[i].size) {
-          icons[i].size = await getImageSize(icons[i].url)
+          try {
+            icons[i].size = await getImageSize(icons[i].url)
+          } catch(e) {
+            void(0)
+          }
         }
       }
       this.setState({
