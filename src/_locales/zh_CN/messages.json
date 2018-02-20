@@ -1,0 +1,26 @@
+{
+  "extensionName": {
+    "message": "网站图标探测器"
+  }
+, "extensionDescription": {
+    "message": "探测网站图标的简单方式."
+  }
+, "extensionBrowserActionTitle": {
+    "message": "解析当前页面的图标"
+  }
+, "titleReference": {
+    "message": "参考"
+  }
+, "titleType": {
+    "message": "类型"
+  }
+, "titleSize": {
+    "message": "尺寸"
+  }
+, "titleIcon": {
+    "message": "图标"
+  }
+, "messageIconUrlCopied": {
+    "message": "此图标的url已复制"
+  }
+}

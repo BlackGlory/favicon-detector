@@ -1,0 +1,26 @@
+{
+  "extensionName": {
+    "message": "Favicon Detector"
+  }
+, "extensionDescription": {
+    "message": "A simple way to detect website icons."
+  }
+, "extensionBrowserActionTitle": {
+    "message": "Parse icons of the current page"
+  }
+, "titleReference": {
+    "message": "Reference"
+  }
+, "titleType": {
+    "message": "Type"
+  }
+, "titleSize": {
+    "message": "Size"
+  }
+, "titleIcon": {
+    "message": "Icon"
+  }
+, "messageIconUrlCopied": {
+    "message": "The url of this icon has been copied"
+  }
+}

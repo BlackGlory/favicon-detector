@@ -8,7 +8,7 @@ module.exports = {
   , net: 'empty'
   }
 , entry: {
-    'popup': './src/loader.js'
+    'bootstrap': './src/bootstrap.js'
   }
 , output: {
     path: path.join(__dirname, 'dist')
@@ -31,10 +31,9 @@ module.exports = {
     ]
   }
 , plugins: [
-    new CopyWebpackPlugin(
-      [
-        { from: './src' }
-      ]
-    , { ignore: ['*.js'] })
+    new CopyWebpackPlugin([
+      { from: './src', ignore: '*.js' }
+    , { from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js', to: 'polyfill.js' }
+    ])
   ]
 }

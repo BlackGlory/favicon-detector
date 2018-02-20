@@ -1,11 +1,7 @@
 {
   "presets": [
     "react"
-  , ["env", {
-      "targets": {
-        "browsers": ["last 10 Chrome versions"]
-      }
-    }]
+  , "env"
   ]
 , "plugins": [
     ["transform-runtime", {

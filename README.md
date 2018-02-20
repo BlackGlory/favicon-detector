@@ -3,3 +3,18 @@
 [![favicon-detector](https://raw.githubusercontent.com/BlackGlory/favicon-detector/master/src/assets/images/icon-128.png)](https://chrome.google.com/webstore/detail/favicon-detector/jlfeffjhgmgblofcgpbgpkkhfniipejm)
 
 A simple way to detect website icons based on [parse-favicon](https://github.com/BlackGlory/parse-favicon) library.
+
+## Support browsers
+
+- [x] [Chrome](https://chrome.google.com/webstore/detail/favicon-detector/jlfeffjhgmgblofcgpbgpkkhfniipejm)
+- [x] [Firefox](https://addons.mozilla.org/firefox/addon/favicon-detector/)
+- [x] [Firefox for Android](https://addons.mozilla.org/firefox/addon/favicon-detector/)
+- [ ] Opera
+
+## Support icons
+
+Support:
+* favicon
+* msapplication-TileImage
+* apple-touch-icon-precomposed
+* apple-touch-icon

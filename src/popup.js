@@ -5,9 +5,15 @@ import styled from 'styled-components'
 import parseFavicon from 'parse-favicon'
 import hash from 'object-hash'
 import Table from 'antd/lib/table'
-import message from 'antd/lib/message'
+import Message from 'antd/lib/message'
 import 'antd/lib/table/style/css'
 import 'antd/lib/message/style/css'
+import {
+  computeArea
+, getPageInfo
+, setClipboard
+, getRemoteImageSize
+} from './utils'
 
 const Window = styled.div`
   width: 800px;
@@ -20,78 +26,34 @@ const Img = styled.img`
   max-width: 256px;
 `
 
-function computeArea(size) {
-  const sizeRegexp = /^\d+x\d+$/ // example: 16x16
-  if (sizeRegexp.test(size)) {
-    return size.split('x').map(Number).reduce((m, n) => m * n, 1)
-  } else {
-    return 0
+function copy(text, successText) {
+  setClipboard(text)
+  if (successText) {
+    Message.success(successText)
   }
-}
-
-function getPageInfo() {
-  return new Promise((resolve, reject) => {
-    try {
-      chrome.tabs.executeScript({
-        code: `({
-          url: document.URL
-        , html: document.querySelector('html').outerHTML
-        })`
-      }, (result) => {
-        if (chrome.runtime.lastError) {
-          return reject(chrome.runtime.lastError)
-        }
-        return resolve(result[0])
-      })
-    } catch(e) {
-      return reject(e)
-    }
-  })
-}
-
-function setClipboard(text, successText) {
-  let textarea = document.createElement('textarea')
-  textarea.textContent = text
-  let body = document.querySelector('body')
-  body.appendChild(textarea)
-  textarea.select()
-  document.execCommand('Copy', false, null)
-  body.removeChild(textarea)
-  message.success(successText)
-}
-
-function getImageSize(url) {
-  return new Promise((resolve, reject) => {
-    let img = new Image()
-    img.addEventListener('load', () => {
-      resolve(`${ img.width }x${ img.height }`)
-    })
-    img.addEventListener('error', reject)
-    img.src = url
-  })
 }
 
 export default class Popup extends Component {
   columns = [
     {
-      title: 'Icon'
+      title: browser.i18n.getMessage('titleIcon')
     , dataIndex: 'url'
     , key: 'icon'
-    , render: url => <a onClick={ () => setClipboard(url, 'Icon url copied!') }><Img src={ url } /></a>
+    , render: url => <a onClick={ () => copy(url, browser.i18n.getMessage('messageIconUrlCopied')) }><Img src={ url } /></a>
     }
   , {
-      title: 'Size'
+      title: browser.i18n.getMessage('titleSize')
     , dataIndex: 'size'
     , key: 'size'
     , sorter: (a, b) => computeArea(a.size) - computeArea(b.size)
     }
   , {
-      title: 'Type'
+      title: browser.i18n.getMessage('titleType')
     , dataIndex: 'type'
     , key: 'type'
     }
   , {
-      title: 'Reference'
+      title: browser.i18n.getMessage('titleReference')
     , dataIndex: 'refer'
     , key: 'refer'
     }
@@ -104,16 +66,16 @@ export default class Popup extends Component {
 
   async componentDidMount() {
     try {
-      let { url, html } = await getPageInfo()
-        , icons = await parseFavicon(html, {
-            baseURI: url
-          , allowUseNetwork: true
-          , allowParseImage: true
-          }, true)
-      for (let i in icons) {
+      const { url, html } = await getPageInfo()
+      const icons = await parseFavicon(html, {
+        baseURI: url
+      , allowUseNetwork: true
+      , allowParseImage: true
+      }, true)
+      for (const i in icons) {
         if (!icons[i].size) {
           try {
-            icons[i].size = await getImageSize(icons[i].url)
+            icons[i].size = await getRemoteImageSize(icons[i].url)
           } catch(e) {
             void(0)
           }
@@ -127,7 +89,7 @@ export default class Popup extends Component {
       this.setState({
         loading: false
       })
-      message.error(e.message, NaN)
+      Message.error(e.message, NaN)
     }
   }
 
