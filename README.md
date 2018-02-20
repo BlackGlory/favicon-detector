@@ -1,4 +1,4 @@
-# Favicon Detector [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlfeffjhgmgblofcgpbgpkkhfniipejm.svg?maxAge=86400)](https://chrome.google.com/webstore/detail/favicon-detector/jlfeffjhgmgblofcgpbgpkkhfniipejm) [![Mozilla Add-on](https://img.shields.io/amo/v/favicon-detector.svg?maxAge=864000)](https://addons.mozilla.org/firefox/addon/favicon-detector/) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackGlory/favicon-detector/master/LICENSE)
+# Favicon Detector [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlfeffjhgmgblofcgpbgpkkhfniipejm.svg?maxAge=86400)](https://chrome.google.com/webstore/detail/favicon-detector/jlfeffjhgmgblofcgpbgpkkhfniipejm) [![Mozilla Add-on](https://img.shields.io/amo/v/favicon-detector.svg?maxAge=86400)](https://addons.mozilla.org/firefox/addon/favicon-detector/) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackGlory/favicon-detector/master/LICENSE)
 
 [![favicon-detector](https://raw.githubusercontent.com/BlackGlory/favicon-detector/master/src/assets/images/icon-128.png)](https://chrome.google.com/webstore/detail/favicon-detector/jlfeffjhgmgblofcgpbgpkkhfniipejm)
 
@@ -18,3 +18,7 @@ Support:
 * msapplication-TileImage
 * apple-touch-icon-precomposed
 * apple-touch-icon
+
+## Upcoming features
+
+- [ ] Better UI for Firefox for Android
