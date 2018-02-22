@@ -1,8 +1,11 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
 
 module.exports = {
   target: 'web'
+, devtool: 'source-map'
 , node: {
     fs: 'empty'
   , net: 'empty'
@@ -23,17 +26,21 @@ module.exports = {
       }
     , {
         test: /\.css$/
-      , use: [
-          { loader: 'style-loader' }
-        , { loader: 'css-loader' }
-        ]
+      , use: ExtractTextPlugin.extract({
+          use: "css-loader"
+        })
       }
     ]
   }
 , plugins: [
     new CopyWebpackPlugin([
       { from: './src', ignore: '*.js' }
-    , { from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js', to: 'polyfill.js' }
+    , { from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js' }
+    , { from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js.map' }
     ])
+  , new ExtractTextPlugin('styles.css')
+  , new UglifyJsPlugin({
+      sourceMap: true
+    })
   ]
 }
