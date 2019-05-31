@@ -26,7 +26,7 @@ Support:
 
 ## Build
 
-``sh
+```sh
 $ yarn
 $ yarn build
-``
+```
