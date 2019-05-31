@@ -22,3 +22,11 @@ Support:
 ## Upcoming features
 
 - [ ] Better UI for Firefox for Android
+- [ ] Support manifest.json
+
+## Build
+
+``sh
+$ yarn
+$ yarn build
+``
