@@ -11,6 +11,7 @@
   , "baseUrl": "."
   , "paths": {
       "@src/*": ["src/*"],
+      "@shared/*": ["src/shared/*"],
       "rxjs": ["node_modules/rxjs"],
       "rxjs/*": ["node_modules/rxjs/*"]
     }

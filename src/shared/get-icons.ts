@@ -1,5 +1,5 @@
 import { parseFavicon, Icon } from 'parse-favicon'
-import { getPageInfo } from '@src/utils'
+import { getPageInfo } from '@shared/get-page-info'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 

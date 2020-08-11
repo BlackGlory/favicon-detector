@@ -3,13 +3,15 @@ import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Table, { ColumnsType } from 'antd/lib/table'
 import Message from 'antd/lib/message'
-import * as hash from 'object-hash'
 import 'antd/lib/table/style/css'
 import 'antd/lib/message/style/css'
-import { setClipboard } from '@src/utils'
-import { getIcons } from '@src/get-icons'
+
+import * as hash from 'object-hash'
 import { Icon } from 'parse-favicon'
 import { IterableOperator } from 'iterable-operator/lib/es2018/style/chaining/iterable-operator'
+import { setClipboard } from '@shared/set-clipboard'
+import { getIcons } from '@shared/get-icons'
+import { getMaxSize } from '@shared/get-max-size'
 
 const Window = styled.div`
   width: 800px;
@@ -28,27 +30,6 @@ const Img = styled.img`
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 `
-
-function copy(text: string, successText: string) {
-  setClipboard(text)
-  if (successText) {
-    Message.success(successText)
-  }
-}
-
-function getMaxSize(sizes: Array<{ width: number, height: number }>): { width: number, height: number } {
-  return sizes.reduce((ret, cur) => {
-    if (getArea(cur) > getArea(ret)) {
-      return cur
-    } else {
-      return ret
-    }
-  })
-
-  function getArea(size: { width: number, height: number }): number {
-    return size.width * size.height
-  }
-}
 
 export default function Popup() {
   const [loading, setLoading] = useState(true)
@@ -78,7 +59,7 @@ export default function Popup() {
     , key: 'icon'
     , render(url: string, icon: Icon) {
         const img = createImg()
-        return <a onClick={copyUrl}>{img}</a>
+        return <a onClick={() => copy(url, browser.i18n.getMessage('messageIconUrlCopied'))}>{img}</a>
 
         function createImg() {
           if (icon.size) {
@@ -92,8 +73,9 @@ export default function Popup() {
           return <Img src={url} />
         }
 
-        function copyUrl() {
-          copy(url, browser.i18n.getMessage('messageIconUrlCopied'))
+        function copy(text: string, successText: string) {
+          setClipboard(text)
+          if (successText) Message.success(successText)
         }
       }
     }
