@@ -6,6 +6,7 @@ import Message from 'antd/lib/message'
 import 'antd/lib/table/style/css'
 import 'antd/lib/message/style/css'
 
+import { useImmer } from 'use-immer'
 import * as hash from 'object-hash'
 import { Icon } from 'parse-favicon'
 import { IterableOperator } from 'iterable-operator/lib/es2018/style/chaining/iterable-operator'
@@ -33,14 +34,17 @@ const Img = styled.img`
 
 export default function Popup() {
   const [loading, setLoading] = useState(true)
-  const [icons, setIcons] = useState<Icon[]>([])
+  const [icons, updateIcons] = useImmer<{ [index: string]: Icon }>({})
+  const iconList: Icon[] = Object.values(icons)
 
   useEffect(() => {
     setLoading(true)
     getIcons().then(observable => {
       observable.subscribe(
         icon => {
-          setIcons(icons => [...icons, icon])
+          updateIcons(icons => {
+            icons[hash(icon)] = icon
+          })
         }
       , e => {
           setLoading(false)
@@ -119,11 +123,14 @@ export default function Popup() {
       title: browser.i18n.getMessage('titleType')
     , dataIndex: 'type'
     , key: 'type'
-    , render(type: Icon['type'] ) {
-        if (type === undefined) return 'unknown'
+    , render(type: Icon['type'], record) {
+        if (type === undefined) {
+          console.log(record)
+          return 'unknown'
+        }
         return type
       }
-    , filters: new IterableOperator(icons)
+    , filters: new IterableOperator(iconList)
         .map(x => x.type)
         .filter<string>(x => !!x)
         .uniq()
@@ -147,7 +154,7 @@ export default function Popup() {
         loading={loading}
         pagination={false}
         columns={columns}
-        dataSource={icons}
+        dataSource={iconList}
       />
     </Window>
   )

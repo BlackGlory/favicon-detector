@@ -11,13 +11,11 @@ export async function getIcons(): Promise<Observable<Icon>> {
   )
 
   async function textFetcher(url: string): Promise<string> {
-    console.log('text', url)
     if (url === pageUrl) return html
     return await fetch(toAbsoluteUrl(url, pageUrl)).then(res => res.text())
   }
 
   async function bufferFetcher(url: string): Promise<ArrayBuffer> {
-    console.log('image', url)
     return await fetch(toAbsoluteUrl(url, pageUrl)).then(res => res.arrayBuffer())
   }
 }

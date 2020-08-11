@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "antd": "^4.5.3",
+    "immer": "^7.0.7",
     "iterable-operator": "^0.11.1",
     "object-hash": "^2.0.3",
     "parse-favicon": "^3.0.3",
@@ -25,6 +26,7 @@
     "react-dom": "^16.13.1",
     "rxjs": "^7.0.0-beta.4",
     "styled-components": "^5.1.1",
+    "use-immer": "^0.4.1",
     "webextension-polyfill": "^0.6.0"
   },
   "devDependencies": {
