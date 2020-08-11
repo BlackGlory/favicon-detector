@@ -12,6 +12,7 @@
   , "paths": {
       "@src/*": ["src/*"],
       "@shared/*": ["src/shared/*"],
+      "@components/*": ["src/components/*"],
       "rxjs": ["node_modules/rxjs"],
       "rxjs/*": ["node_modules/rxjs/*"]
     }
