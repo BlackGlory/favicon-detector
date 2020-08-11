@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Table from 'antd/lib/table'
+import Table, { ColumnsType } from 'antd/lib/table'
 import Message from 'antd/lib/message'
 import * as hash from 'object-hash'
 import 'antd/lib/table/style/css'
@@ -9,6 +9,7 @@ import 'antd/lib/message/style/css'
 import { setClipboard } from '@src/utils'
 import { getIcons } from '@src/get-icons'
 import { Icon } from 'parse-favicon'
+import { IterableOperator } from 'iterable-operator/lib/es2018/style/chaining/iterable-operator'
 
 const Window = styled.div`
   width: 800px;
@@ -35,7 +36,27 @@ function copy(text: string, successText: string) {
 }
 
 export default function Popup() {
-  const columns = [
+  const [loading, setLoading] = useState(true)
+  const [icons, setIcons] = useState<Icon[]>([])
+
+  useEffect(() => {
+    setLoading(true)
+    getIcons().then(observable => {
+      observable.subscribe(
+        icon => {
+          setIcons(icons => [...icons, icon])
+        }
+      , e => {
+          setLoading(false)
+          console.error(e)
+          Message.error(e.message, NaN)
+        }
+      , () => setLoading(false)
+      )
+    })
+  }, [])
+
+  const columns: ColumnsType<Icon> = [
     {
       title: browser.i18n.getMessage('titleIcon')
     , dataIndex: 'url'
@@ -93,6 +114,15 @@ export default function Popup() {
         if (type === undefined) return 'unknown'
         return type
       }
+    , filters: new IterableOperator(icons)
+        .map(x => x.type)
+        .filter<string>(x => !!x)
+        .uniq()
+        .map(x => ({ text: x, value: x }))
+        .toArray()
+    , onFilter(value, record) {
+        return record.type === value
+      }
     }
   , {
       title: browser.i18n.getMessage('titleReference')
@@ -101,27 +131,6 @@ export default function Popup() {
     }
   ]
 
-  const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<Icon[]>([])
-
-  useEffect(() => {
-    ;(async () => {
-      setLoading(true)
-      const observable = await getIcons()
-      observable.subscribe(
-        icon => {
-          setData(data => [...data, icon])
-        }
-      , e => {
-          setLoading(false)
-          console.error(e)
-          Message.error(e.message, NaN)
-        }
-      , () => setLoading(false)
-      )
-    })()
-  }, [])
-
   return (
     <Window>
       <Table<Icon>
@@ -129,7 +138,7 @@ export default function Popup() {
         loading={ loading }
         pagination={ false }
         columns={ columns }
-        dataSource={ data }
+        dataSource={ icons }
       />
     </Window>
   )
