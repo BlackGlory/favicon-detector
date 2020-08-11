@@ -20,6 +20,7 @@ const Window = styled.div`
 
 const Img = styled.img`
   max-width: 256px;
+  max-height: 256px;
   background-image: linear-gradient(45deg, #b0b0b0 25%, transparent 25%),
                     linear-gradient(-45deg, #b0b0b0 25%, transparent 25%),
                     linear-gradient(45deg, transparent 75%, #b0b0b0 75%),
@@ -32,6 +33,20 @@ function copy(text: string, successText: string) {
   setClipboard(text)
   if (successText) {
     Message.success(successText)
+  }
+}
+
+function getMaxSize(sizes: Array<{ width: number, height: number }>): { width: number, height: number } {
+  return sizes.reduce((ret, cur) => {
+    if (getArea(cur) > getArea(ret)) {
+      return cur
+    } else {
+      return ret
+    }
+  })
+
+  function getArea(size: { width: number, height: number }): number {
+    return size.width * size.height
   }
 }
 
@@ -61,10 +76,21 @@ export default function Popup() {
       title: browser.i18n.getMessage('titleIcon')
     , dataIndex: 'url'
     , key: 'icon'
-    , render(url: string) {
-        return <a onClick={ copyUrl }>
-          <Img src={ url } />
-        </a>
+    , render(url: string, icon: Icon) {
+        const img = createImg()
+        return <a onClick={copyUrl}>{img}</a>
+
+        function createImg() {
+          if (icon.size) {
+            if (Array.isArray(icon.size)) {
+              const size = getMaxSize(icon.size)
+              return <Img src={url} width={size.width} height={size.height} />
+            } else if (icon.size !== 'any') {
+              return <Img src={url} width={icon.size.width} height={icon.size.height} />
+            }
+          }
+          return <Img src={url} />
+        }
 
         function copyUrl() {
           copy(url, browser.i18n.getMessage('messageIconUrlCopied'))
@@ -75,6 +101,7 @@ export default function Popup() {
       title: browser.i18n.getMessage('titleSize')
     , dataIndex: 'size'
     , key: 'size'
+    , defaultSortOrder: 'ascend'
     , render(size: Icon['size']) {
         if (size === undefined) {
           return 'unknown'
@@ -134,11 +161,11 @@ export default function Popup() {
   return (
     <Window>
       <Table<Icon>
-        rowKey={ record => hash(record) }
-        loading={ loading }
-        pagination={ false }
-        columns={ columns }
-        dataSource={ icons }
+        rowKey={record => hash(record)}
+        loading={loading}
+        pagination={false}
+        columns={columns}
+        dataSource={icons}
       />
     </Window>
   )
