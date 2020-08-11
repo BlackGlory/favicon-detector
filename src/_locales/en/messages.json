@@ -6,7 +6,7 @@
     "message": "A simple way to detect website icons."
   }
 , "extensionBrowserActionTitle": {
-    "message": "Parse icons of the current page"
+    "message": "Analyze the icon of the current page"
   }
 , "titleReference": {
     "message": "Reference"
@@ -21,6 +21,6 @@
     "message": "Icon"
   }
 , "messageIconUrlCopied": {
-    "message": "The url of this icon has been copied"
+    "message": "Icon URL copied"
   }
 }

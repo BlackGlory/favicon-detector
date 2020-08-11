@@ -6,7 +6,7 @@
     "message": "探测网站图标的简单方式."
   }
 , "extensionBrowserActionTitle": {
-    "message": "解析当前页面的图标"
+    "message": "分析当前页面的图标"
   }
 , "titleReference": {
     "message": "参考"
@@ -21,6 +21,6 @@
     "message": "图标"
   }
 , "messageIconUrlCopied": {
-    "message": "此图标的url已复制"
+    "message": "图标的URL已复制"
   }
 }
