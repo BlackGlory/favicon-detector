@@ -6,21 +6,11 @@ A simple way to detect website icons based on [parse-favicon](https://github.com
 
 ## Support browsers
 
-- [x] [Chrome](https://chrome.google.com/webstore/detail/favicon-detector/jlfeffjhgmgblofcgpbgpkkhfniipejm)
+- [x] [Chrome](https://chrome.google.com/webstore/detail/jlfeffjhgmgblofcgpbgpkkhfniipejm)
 - [x] [Firefox](https://addons.mozilla.org/firefox/addon/favicon-detector/)
-- [x] [Firefox for Android](https://addons.mozilla.org/firefox/addon/favicon-detector/)
-
-## Support icons
-
-Support:
-* favicon
-* msapplication-TileImage
-* apple-touch-icon-precomposed
-* apple-touch-icon
 
 ## Build
 
 ```sh
-$ yarn
-$ yarn build
+$ yarn install && yarn build
 ```
