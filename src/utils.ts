@@ -1,6 +1,4 @@
-'use strict'
-
-export function computeArea(size) {
+export function computeArea(size: string) {
   const sizeRegexp = /^\d+x\d+$/ // example: 16x16
   if (sizeRegexp.test(size)) {
     return size.split('x').map(Number).reduce((m, n) => m * n, 1)
@@ -15,21 +13,22 @@ export async function getPageInfo() {
       url: document.URL
     , html: document.querySelector('html').outerHTML
     })`
+  , runAt: 'document_end'
   })
   return result[0]
 }
 
-export function setClipboard(text) {
+export function setClipboard(text: string) {
   const textarea = document.createElement('textarea')
   textarea.textContent = text
-  const body = document.querySelector('body')
+  const body = document.querySelector('body')!
   body.appendChild(textarea)
   textarea.select()
-  document.execCommand('Copy', false, null)
+  document.execCommand('Copy', false)
   body.removeChild(textarea)
 }
 
-export function getRemoteImageSize(url) {
+export function getRemoteImageSize(url: string) {
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.addEventListener('load', () => {

@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2019"
+  , "module": "ES2020"
+  , "moduleResolution": "Node"
+  , "jsx": "react"
+  , "removeComments": true
+  , "strict": true
+  , "noUnusedLocals": false
+  , "noUnusedParameters": false
+  , "baseUrl": "."
+  , "paths": {
+      "@src/*": ["src/*"],
+      "rxjs": ["node_modules/rxjs"],
+      "rxjs/*": ["node_modules/rxjs/*"]
+    }
+  }
+, "include": [
+    "src"
+  ]
+}

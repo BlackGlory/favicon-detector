@@ -1,0 +1,136 @@
+import * as React from 'react'
+import { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import Table from 'antd/lib/table'
+import Message from 'antd/lib/message'
+import * as hash from 'object-hash'
+import 'antd/lib/table/style/css'
+import 'antd/lib/message/style/css'
+import { setClipboard } from '@src/utils'
+import { getIcons } from '@src/get-icons'
+import { Icon } from 'parse-favicon'
+
+const Window = styled.div`
+  width: 800px;
+  max-width: 800px;
+  max-height: 600px;
+  overflow-x: hidden;
+`
+
+const Img = styled.img`
+  max-width: 256px;
+  background-image: linear-gradient(45deg, #b0b0b0 25%, transparent 25%),
+                    linear-gradient(-45deg, #b0b0b0 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #b0b0b0 75%),
+                    linear-gradient(-45deg, transparent 75%, #b0b0b0 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+`
+
+function copy(text: string, successText: string) {
+  setClipboard(text)
+  if (successText) {
+    Message.success(successText)
+  }
+}
+
+export default function Popup() {
+  const columns = [
+    {
+      title: browser.i18n.getMessage('titleIcon')
+    , dataIndex: 'url'
+    , key: 'icon'
+    , render(url: string) {
+        return <a onClick={ copyUrl }>
+          <Img src={ url } />
+        </a>
+
+        function copyUrl() {
+          copy(url, browser.i18n.getMessage('messageIconUrlCopied'))
+        }
+      }
+    }
+  , {
+      title: browser.i18n.getMessage('titleSize')
+    , dataIndex: 'size'
+    , key: 'size'
+    , render(size: Icon['size']) {
+        if (size === undefined) {
+          return 'unknown'
+        } else if (typeof size === 'string') {
+          return size
+        } else if (Array.isArray(size)) {
+          return size.map(sizeToString).join(' ')
+        } else {
+          return sizeToString(size)
+        }
+
+        function sizeToString(size: { width: number, height: number }): string {
+          return `${size.width}x${size.height}`
+        }
+      }
+    , sorter(a: Icon, b: Icon) {
+        return getArea(a.size) - getArea(b.size)
+
+        function getArea(size: Icon['size']): number {
+          if (size === undefined) {
+            return 0
+          } else if (typeof size === 'string') {
+            return Infinity
+          } else if (Array.isArray(size)) {
+            return size.map(getArea).reduce((ret, cur) => Math.max(ret, cur))
+          } else {
+            return size.width * size.height
+          }
+        }
+      }
+    }
+  , {
+      title: browser.i18n.getMessage('titleType')
+    , dataIndex: 'type'
+    , key: 'type'
+    , render(type: Icon['type'] ) {
+        if (type === undefined) return 'unknown'
+        return type
+      }
+    }
+  , {
+      title: browser.i18n.getMessage('titleReference')
+    , dataIndex: 'reference'
+    , key: 'reference'
+    }
+  ]
+
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<Icon[]>([])
+
+  useEffect(() => {
+    ;(async () => {
+      setLoading(true)
+      const observable = await getIcons()
+      observable.subscribe(
+        icon => {
+          setData(data => [...data, icon])
+        }
+      , e => {
+          setLoading(false)
+          console.error(e)
+          Message.error(e.message, NaN)
+        }
+      , () => setLoading(false)
+      )
+    })()
+  }, [])
+
+  return (
+    <Window>
+      <Table<Icon>
+        rowKey={ record => hash(record) }
+        loading={ loading }
+        pagination={ false }
+        columns={ columns }
+        dataSource={ data }
+      />
+    </Window>
+  )
+}
