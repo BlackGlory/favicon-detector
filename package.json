@@ -8,7 +8,8 @@
     "clean": "rm -rf dist",
     "build": "yarn clean && webpack --config webpack.prod.js",
     "dev": "webpack -w --config webpack.dev.js",
-    "size": "webpack --json | webpack-bundle-size-analyzer"
+    "size": "webpack --json | webpack-bundle-size-analyzer",
+    "release": "standard-version"
   },
   "husky": {
     "hooks": {
@@ -44,6 +45,7 @@
     "eslint": "^7.6.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "husky": "^4.2.5",
+    "standard-version": "^9.1.0",
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^4.1.0",
     "ts-loader": "^8.0.2",
