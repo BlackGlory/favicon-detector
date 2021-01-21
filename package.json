@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "antd": "^4.5.3",
-    "immer": "^8.0.0",
+    "immer": "^8.0.1",
     "iterable-operator": "^0.12.6",
     "object-hash": "^2.0.3",
     "parse-favicon": "^3.0.8",
