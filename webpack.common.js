@@ -45,7 +45,12 @@ module.exports = {
     })
   , new CopyPlugin({
       patterns: [
-        { from: './src', globOptions: { ignore: ['**/*.ts', '**/*.tsx', '**/*.html'] }}
+        {
+          from: './src'
+        , globOptions: {
+            ignore: ['**/*.ts', '**/*.tsx', '**/*.html', '**/manifest.*.json']
+          }
+        }
       , { from: './src/popup/index.html', to: 'popup.html' }
       , { from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js' }
       , { from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js.map' }
