@@ -1,15 +1,12 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const { ProvidePlugin } = require('webpack')
 
 module.exports = {
   target: 'web'
-, node: {
-    fs: 'empty'
-  }
 , entry: {
-    'background': './src/background/index.ts'
-  , 'popup': './src/popup/index.tsx'
+    'popup': './src/popup/index.tsx'
   }
 , output: {
     path: path.join(__dirname, 'dist')
@@ -18,6 +15,15 @@ module.exports = {
 , resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
   , plugins: [new TsconfigPathsPlugin()]
+  , fallback: {
+      'util': require.resolve('util/')
+    , 'path': require.resolve('path-browserify')
+    , 'assert': require.resolve('assert/')
+    , 'buffer': require.resolve('buffer/')
+    , 'process': require.resolve('process/browser')
+    , 'events': require.resolve('events/')
+    , 'fs': false
+    }
   }
 , module: {
     rules: [
@@ -33,14 +39,13 @@ module.exports = {
     ]
   }
 , plugins: [
-    new CopyPlugin({
+    new ProvidePlugin({
+      process: 'process'
+    , Buffer: ['buffer', 'Buffer']
+    })
+  , new CopyPlugin({
       patterns: [
-        {
-          from: './src'
-        , globOptions: {
-            ignore: ['**/*.ts', '**/*.tsx', '**/*.html']
-          }
-        }
+        { from: './src', globOptions: { ignore: ['**/*.ts', '**/*.tsx', '**/*.html'] }}
       , { from: './src/popup/index.html', to: 'popup.html' }
       , { from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js' }
       , { from: './node_modules/webextension-polyfill/dist/browser-polyfill.min.js.map' }

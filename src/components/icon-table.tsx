@@ -4,7 +4,7 @@ import 'antd/lib/table/style/css'
 import Message from 'antd/lib/message'
 import 'antd/lib/message/style/css'
 import { IconImage } from '@components/icon-image'
-
+import { isNull, isStringPrimitive } from '@blackglory/types'
 import * as hash from 'object-hash'
 import { Icon } from 'parse-favicon'
 import { i18n } from '@shared/i18n'
@@ -78,15 +78,14 @@ function toFilter(x: string) {
 
 function iconTypeToString(icon: Icon): string {
   const type = icon.type
-  if (type === undefined) return 'unknown'
-  return type
+  return type ?? 'unknown'
 }
 
 function iconSizeToString(icon: Icon): string {
   const size = icon.size
-  if (size === undefined) {
+  if (isNull(size)) {
     return 'unknown'
-  } else if (typeof size === 'string') {
+  } else if (isStringPrimitive(size)) {
     return size
   } else if (Array.isArray(size)) {
     return size.map(sizeToString).join(' ')
