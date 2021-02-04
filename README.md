@@ -8,6 +8,7 @@ A simple way to detect website icons based on [parse-favicon](https://github.com
 
 - [x] [Chrome](https://chrome.google.com/webstore/detail/jlfeffjhgmgblofcgpbgpkkhfniipejm)
 - [x] [Firefox](https://addons.mozilla.org/firefox/addon/favicon-detector/)
+- [x] [Edge](https://microsoftedge.microsoft.com/addons/detail/favicon-detector/kmlcolmkcjbpagopgiojkflkejfnnjbm)
 
 ## Build
 
