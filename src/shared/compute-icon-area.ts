@@ -1,5 +1,5 @@
 import { Icon } from 'parse-favicon'
-import { isNull, isStringPrimitive } from '@blackglory/types'
+import { isArray, isNull, isString } from '@blackglory/types'
 
 export function computeIconArea(icon: Icon): number {
   return computeSizeArea(icon.size)
@@ -8,9 +8,9 @@ export function computeIconArea(icon: Icon): number {
 function computeSizeArea(size: Icon['size']): number {
   if (isNull(size)) {
     return 0
-  } else if (isStringPrimitive(size)) {
+  } else if (isString(size)) {
     return Infinity
-  } else if (Array.isArray(size)) {
+  } else if (isArray(size)) {
     return size.map(computeSizeArea).reduce((ret, cur) => Math.max(ret, cur))
   } else {
     return size.width * size.height

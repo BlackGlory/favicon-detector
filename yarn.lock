@@ -178,6 +178,13 @@
     extra-dom "^0.2.9"
     jsdom "^16.4.0"
 
+"@blackglory/types@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@blackglory/types/-/types-0.5.2.tgz#4747d650d8c1a707a3e86110fdaa0fde7e222a0c"
+  integrity sha512-ChGzGwLl8BgpwdrlcafM/umpw7sFEan5ALhvoaOXVXZwo5KS1mOagTHMOFnQfGnlcc+R+VliSFyoiDLIUS2nIA==
+  dependencies:
+    justypes "^0.1.6"
+
 "@commitlint/cli@^11.0.0":
   version "11.0.0"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-11.0.0.tgz#698199bc52afed50aa28169237758fa14a67b5d3"
@@ -2525,6 +2532,11 @@ jsprim@^1.2.2:
     extsprintf "1.3.0"
     json-schema "0.2.3"
     verror "1.10.0"
+
+justypes@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/justypes/-/justypes-0.1.6.tgz#4878d68cc75a9b8c6f38e62d696457e40c093e90"
+  integrity sha512-J3C64F3cPR9cfheVhO6c+Qt6TE5ey3vThrQvcvj7uwJpBq2g99TCOk86YhrhTaqQnIaVb5ww2VhMUmJgAF5YRg==
 
 kind-of@^6.0.2, kind-of@^6.0.3:
   version "6.0.3"

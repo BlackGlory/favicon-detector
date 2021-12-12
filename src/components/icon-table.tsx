@@ -4,7 +4,7 @@ import 'antd/lib/table/style/css'
 import Message from 'antd/lib/message'
 import 'antd/lib/message/style/css'
 import { IconImage } from '@components/icon-image'
-import { isNull, isStringPrimitive } from '@blackglory/types'
+import { isArray, isNull, isString } from '@blackglory/types'
 import * as hash from 'object-hash'
 import { Icon } from 'parse-favicon'
 import { i18n } from '@shared/i18n'
@@ -12,6 +12,11 @@ import { getMaxSize } from '@shared/get-max-size'
 import { setClipboard } from '@shared/set-clipboard'
 import { computeIconArea } from '@shared/compute-icon-area'
 import { getUniqueIconTypes } from '@shared/get-unique-icon-types'
+
+interface Size {
+  width: number
+  height: number
+}
 
 interface IconTableProps {
   icons: Icon[]
@@ -82,15 +87,14 @@ function iconTypeToString(icon: Icon): string {
 }
 
 function iconSizeToString(icon: Icon): string {
-  const size = icon.size
-  if (isNull(size)) {
+  if (isNull(icon.size)) {
     return 'unknown'
-  } else if (isStringPrimitive(size)) {
-    return size
-  } else if (Array.isArray(size)) {
-    return size.map(sizeToString).join(' ')
+  } else if (isString(icon.size)) {
+    return icon.size
+  } else if (isArray<Size>(icon.size)) {
+    return icon.size.map(sizeToString).join(' ')
   } else {
-    return sizeToString(size)
+    return sizeToString(icon.size)
   }
 
   function sizeToString(size: { width: number, height: number }): string {
@@ -100,7 +104,7 @@ function iconSizeToString(icon: Icon): string {
 
 function createIconImage(icon: Icon) {
   if (icon.size) {
-    if (Array.isArray(icon.size)) {
+    if (isArray<Size>(icon.size)) {
       const size = getMaxSize(icon.size)
       return <IconImage src={icon.url} width={size.width} height={size.height} />
     } else if (icon.size !== 'any') {
