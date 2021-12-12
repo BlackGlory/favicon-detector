@@ -19,6 +19,7 @@
     }
   },
   "dependencies": {
+    "@blackglory/go": "^0.1.1",
     "@blackglory/types": "^0.5.2",
     "antd": "^4.17.3",
     "immer": "^9.0.7",

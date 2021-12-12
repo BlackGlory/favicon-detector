@@ -10,14 +10,17 @@ import { useImmer } from 'use-immer'
 import hash from 'object-hash'
 import { Icon } from 'parse-favicon'
 import { getIconsFromPage } from '@utils/get-icons-from-page'
+import { go } from '@blackglory/go'
 
-export const Popup: React.FC = () => {
+export function Popup() {
   const [loading, setLoading] = useState(true)
   const [iconByHash, updateIconByHash] = useImmer<{ [index: string]: Icon }>({})
   const icons: Icon[] = Object.values(iconByHash)
 
   useEffect(() => {
-    getIconsFromPage().then(observable => {
+    go(async () => {
+      const observable = await getIconsFromPage()
+
       observable.subscribe(
         icon => updateIconByHash(icons => {
           icons[hash(icon)] = icon

@@ -13,17 +13,18 @@ import { setClipboard } from '@utils/set-clipboard'
 import { computeIconArea } from '@utils/compute-icon-area'
 import { getUniqueIconTypes } from '@utils/get-unique-icon-types'
 
-interface Size {
+interface ISize {
   width: number
   height: number
 }
 
-interface IconTableProps {
+interface IIconTableProps {
   icons: Icon[]
   loading: boolean
 }
 
-export const IconTable: React.FC<IconTableProps> = ({ icons, loading }) => {
+export function IconTable(props: IIconTableProps) {
+  const { icons, loading } = props
   const columns: ColumnsType<Icon> = [
     {
       title: i18n('titleIcon')
@@ -91,7 +92,7 @@ function iconSizeToString(icon: Icon): string {
     return 'unknown'
   } else if (isString(icon.size)) {
     return icon.size
-  } else if (isArray<Size>(icon.size)) {
+  } else if (isArray<ISize>(icon.size)) {
     return icon.size.map(sizeToString).join(' ')
   } else {
     return sizeToString(icon.size)
@@ -104,7 +105,7 @@ function iconSizeToString(icon: Icon): string {
 
 function createIconImage(icon: Icon) {
   if (icon.size) {
-    if (isArray<Size>(icon.size)) {
+    if (isArray<ISize>(icon.size)) {
       const size = getMaxSize(icon.size)
       return <IconImage src={icon.url} width={size.width} height={size.height} />
     } else if (icon.size !== 'any') {
