@@ -5,8 +5,8 @@
   , "jsx": "react-jsx"
   , "removeComments": true
   , "strict": true
-  , "noUnusedLocals": true
   , "noUnusedParameters": false
+  , "esModuleInterop": true
   , "baseUrl": "."
   , "paths": {
       "@src/*": ["src/*"],

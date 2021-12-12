@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import Message from 'antd/lib/message'
 import 'antd/lib/message/style/css'
 import { IconTable } from '@components/icon-table'
@@ -7,7 +7,7 @@ import { Window } from '@components/window'
 import { useState, useEffect } from 'react'
 import { useImmer } from 'use-immer'
 
-import * as hash from 'object-hash'
+import hash from 'object-hash'
 import { Icon } from 'parse-favicon'
 import { getIconsFromPage } from '@shared/get-icons-from-page'
 
