@@ -7,11 +7,11 @@ import { IconImage } from '@components/icon-image'
 import { isArray, isNull, isString } from '@blackglory/types'
 import hash from 'object-hash'
 import { Icon } from 'parse-favicon'
-import { i18n } from '@shared/i18n'
-import { getMaxSize } from '@shared/get-max-size'
-import { setClipboard } from '@shared/set-clipboard'
-import { computeIconArea } from '@shared/compute-icon-area'
-import { getUniqueIconTypes } from '@shared/get-unique-icon-types'
+import { i18n } from '@utils/i18n'
+import { getMaxSize } from '@utils/get-max-size'
+import { setClipboard } from '@utils/set-clipboard'
+import { computeIconArea } from '@utils/compute-icon-area'
+import { getUniqueIconTypes } from '@utils/get-unique-icon-types'
 
 interface Size {
   width: number

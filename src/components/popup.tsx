@@ -9,7 +9,7 @@ import { useImmer } from 'use-immer'
 
 import hash from 'object-hash'
 import { Icon } from 'parse-favicon'
-import { getIconsFromPage } from '@shared/get-icons-from-page'
+import { getIconsFromPage } from '@utils/get-icons-from-page'
 
 export const Popup: React.FC = () => {
   const [loading, setLoading] = useState(true)
