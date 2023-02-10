@@ -3723,10 +3723,10 @@ parent-module@^1.0.0:
   dependencies:
     callsites "^3.0.0"
 
-parse-favicon@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/parse-favicon/-/parse-favicon-6.0.0.tgz#9f1f3e4fdda7e71e337c78090e98d199781d1d45"
-  integrity sha512-drNfOvihYxr4eO/4KBF+d7jNolAw0aF4EVgJ/+x+Iq92/JXRiXOVrxmR1cjlk2i1t4U1dlj4wbPImOtV4V3ALA==
+parse-favicon@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/parse-favicon/-/parse-favicon-6.0.1.tgz#5ae618e80b5b2f4e7dd16ded6f513f3366e0162b"
+  integrity sha512-DjWEqQc+bpB9US/YIkwB7sm3HXZSw0y97RoRB72isRUCjmXbeutVP5ANI/T/EtkRaXk341p0ciOwR1PsImC28g==
   dependencies:
     "@blackglory/errors" "^3.0.0"
     "@blackglory/prelude" "^0.3.1"

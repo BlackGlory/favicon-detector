@@ -9,8 +9,7 @@
     "prepublishOnly": "run-s clean build",
     "clean": "rimraf dist",
     "build": "webpack --config webpack.prod.js",
-    "dev": "webpack -w --config webpack.dev.js",
-    "size": "webpack --json | webpack-bundle-size-analyzer"
+    "dev": "webpack --watch --config webpack.dev.js"
   },
   "husky": {
     "hooks": {
@@ -57,7 +56,7 @@
     "immer": "^9.0.19",
     "iterable-operator": "^4.0.3",
     "object-hash": "^3.0.0",
-    "parse-favicon": "^6.0.0",
+    "parse-favicon": "^6.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
