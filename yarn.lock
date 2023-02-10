@@ -2277,6 +2277,18 @@ extra-rand@^0.1.1:
   resolved "https://registry.yarnpkg.com/extra-rand/-/extra-rand-0.1.1.tgz#e75e71ec96eb2f9b47d2a3c6513b3fb042f05a45"
   integrity sha512-sDpJWzuKa1bTrVVG3dkCiNMt93NanphQIWhW4tUS9PDiA0KTZ+fzyS4Idw+7/lH5ZzxtOiHEJEnBWSN4gi8gyA==
 
+extra-react-hooks@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/extra-react-hooks/-/extra-react-hooks-0.4.3.tgz#95ba50fd47f5727af74f68a90b04181d2c20da02"
+  integrity sha512-QUOxAE5Ws1nIAs2t/Nw81n7uZ+SWdvwUFpwHmut2maHf5j96Vf0UfZUDCkJ3FMPHH+3WeWJnTR4iyRgfN48O5w==
+  dependencies:
+    "@blackglory/errors" "^2.4.3"
+    extra-fsm "^0.1.1"
+    extra-utils "^5.0.1"
+    iterable-operator "^2.5.0"
+    justypes "^4.1.0"
+    rxjs "^7.8.0"
+
 extra-timers@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/extra-timers/-/extra-timers-0.2.5.tgz#5b0bac06b111cfa1afbc1b991e1362dfe2db4617"

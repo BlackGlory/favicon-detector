@@ -2,21 +2,20 @@ import React from 'react'
 import Message from 'antd/lib/message'
 import { IconTable } from '@components/icon-table'
 import { Window } from '@components/window'
-
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useImmer } from 'use-immer'
-
 import hash from 'object-hash'
 import { IIcon } from 'parse-favicon'
 import { getIconsFromPage } from '@utils/get-icons-from-page'
 import { go } from '@blackglory/prelude'
+import { useMount } from 'extra-react-hooks'
 
 export function Popup() {
   const [loading, setLoading] = useState(true)
   const [iconByHash, updateIconByHash] = useImmer<{ [index: string]: IIcon }>({})
   const icons: IIcon[] = Object.values(iconByHash)
 
-  useEffect(() => {
+  useMount(() => {
     go(async () => {
       const observable = await getIconsFromPage()
 
@@ -36,7 +35,7 @@ export function Popup() {
         }
       })
     })
-  }, [])
+  })
 
   return (
     <Window>
