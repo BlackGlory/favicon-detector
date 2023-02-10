@@ -1,4 +1,7 @@
-export function getMaxSize(sizes: Array<{ width: number, height: number }>): { width: number, height: number } {
+export function getMaxSize(sizes: Array<{ width: number, height: number }>): {
+  width: number
+  height: number
+} {
   return sizes.reduce((ret, cur) => {
     if (computeSizeArea(cur) > computeSizeArea(ret)) {
       return cur

@@ -1,7 +1,7 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
-const { ProvidePlugin } = require('webpack')
+const { ProvidePlugin, NormalModuleReplacementPlugin } = require('webpack')
 
 module.exports = {
   target: 'web'
@@ -16,12 +16,13 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.json']
   , plugins: [new TsconfigPathsPlugin()]
   , fallback: {
-      'util': require.resolve('util/')
+      'util': require.resolve('util')
     , 'path': require.resolve('path-browserify')
-    , 'assert': require.resolve('assert/')
-    , 'buffer': require.resolve('buffer/')
+    , 'assert': require.resolve('assert')
+    , 'buffer': require.resolve('buffer')
+    , 'stream': require.resolve('stream-browserify')
     , 'process': require.resolve('process/browser')
-    , 'events': require.resolve('events/')
+    , 'events': require.resolve('events')
     , 'fs': false
     }
   }
@@ -39,7 +40,22 @@ module.exports = {
     ]
   }
 , plugins: [
-    new ProvidePlugin({
+    new NormalModuleReplacementPlugin(/^node:/, (resource) => {
+      const mod = resource.request.replace(/^node:/, '')
+
+      switch (mod) {
+        case 'buffer': {
+          resource.request = 'buffer'
+          break
+        }
+        case 'stream': {
+          resource.request = 'stream'
+          break
+        }
+        default: throw new Error(`Not found ${mod}`)
+      }
+    })
+  , new ProvidePlugin({
       process: 'process'
     , Buffer: ['buffer', 'Buffer']
     })

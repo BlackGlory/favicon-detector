@@ -1,12 +1,10 @@
 import React from 'react'
 import Table, { ColumnsType } from 'antd/lib/table'
-import 'antd/lib/table/style/css'
 import Message from 'antd/lib/message'
-import 'antd/lib/message/style/css'
 import { IconImage } from '@components/icon-image'
-import { isArray, isNull, isString } from '@blackglory/types'
+import { isArray, isNull, isString } from '@blackglory/prelude'
 import hash from 'object-hash'
-import { Icon } from 'parse-favicon'
+import { IIcon } from 'parse-favicon'
 import { i18n } from '@utils/i18n'
 import { getMaxSize } from '@utils/get-max-size'
 import { setClipboard } from '@utils/set-clipboard'
@@ -19,18 +17,18 @@ interface ISize {
 }
 
 interface IIconTableProps {
-  icons: Icon[]
+  icons: IIcon[]
   loading: boolean
 }
 
 export function IconTable(props: IIconTableProps) {
   const { icons, loading } = props
-  const columns: ColumnsType<Icon> = [
+  const columns: ColumnsType<IIcon> = [
     {
       title: i18n('titleIcon')
     , dataIndex: 'url'
     , key: 'icon'
-    , render(_, icon: Icon) {
+    , render(_, icon: IIcon) {
         return <a onClick={() => copyIconUrl(icon)}>
           {createIconImage(icon)}
         </a>
@@ -68,7 +66,7 @@ export function IconTable(props: IIconTableProps) {
   ]
 
   return (
-    <Table<Icon>
+    <Table<IIcon>
       rowKey={record => hash(record)}
       loading={loading}
       pagination={false}
@@ -78,16 +76,22 @@ export function IconTable(props: IIconTableProps) {
   )
 }
 
-function toFilter(x: string) {
-  return { text: x, value: x }
+function toFilter(x: string): {
+  text: string
+  value: string
+} {
+  return {
+    text: x
+  , value: x
+  }
 }
 
-function iconTypeToString(icon: Icon): string {
+function iconTypeToString(icon: IIcon): string {
   const type = icon.type
   return type ?? 'unknown'
 }
 
-function iconSizeToString(icon: Icon): string {
+function iconSizeToString(icon: IIcon): string {
   if (isNull(icon.size)) {
     return 'unknown'
   } else if (isString(icon.size)) {
@@ -98,12 +102,12 @@ function iconSizeToString(icon: Icon): string {
     return sizeToString(icon.size)
   }
 
-  function sizeToString(size: { width: number, height: number }): string {
+  function sizeToString(size: { width: number; height: number }): string {
     return `${size.width}x${size.height}`
   }
 }
 
-function createIconImage(icon: Icon) {
+function createIconImage(icon: IIcon) {
   if (icon.size) {
     if (isArray<ISize>(icon.size)) {
       const size = getMaxSize(icon.size)
@@ -115,7 +119,7 @@ function createIconImage(icon: Icon) {
   return <IconImage src={icon.url} />
 }
 
-function copyIconUrl(icon: Icon) {
+function copyIconUrl(icon: IIcon): void {
   setClipboard(icon.url)
   Message.success(i18n('messageIconUrlCopied'))
 }

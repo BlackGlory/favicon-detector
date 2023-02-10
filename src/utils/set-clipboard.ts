@@ -1,4 +1,4 @@
-export function setClipboard(text: string) {
+export function setClipboard(text: string): void {
   const textarea = document.createElement('textarea')
   textarea.textContent = text
   const body = document.querySelector('body')!

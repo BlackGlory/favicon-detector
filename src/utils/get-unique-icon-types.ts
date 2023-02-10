@@ -1,10 +1,13 @@
-import { Icon } from 'parse-favicon'
-import { IterableOperator } from 'iterable-operator/lib/es2018/style/chaining/iterable-operator'
+import { IIcon } from 'parse-favicon'
+import { pipe } from 'extra-utils'
+import { map, filter, uniq, toArray } from 'iterable-operator'
 
-export function getUniqueIconTypes(icons: Icon[]): string[] {
-  return new IterableOperator(icons)
-    .map(x => x.type)
-    .filter<string>(x => !!x)
-    .uniq()
-    .toArray()
+export function getUniqueIconTypes(icons: IIcon[]): string[] {
+  return pipe(
+    icons
+  , icons => map(icons, x => x.type)
+  , types => filter<string | null, string>(types, x => !!x)
+  , uniq
+  , toArray
+  )
 }
