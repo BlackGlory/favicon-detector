@@ -2,30 +2,34 @@ import { parseFavicon, IIcon } from 'parse-favicon'
 import { getPageInfo } from '@utils/get-page-info'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { Awaitable } from '@blackglory/prelude'
+import { assert, Awaitable } from '@blackglory/prelude'
 import { produce } from 'immer'
+import { getActiveTab } from 'extra-webextension'
 
 export async function getIconsFromPage(): Promise<Observable<IIcon>> {
-  const { url: pageUrl, html } = await getPageInfo()
+  const activeTab = await getActiveTab()
+  assert(activeTab.id, 'The activeTab.id is undefined')
 
-  return parseFavicon(pageUrl, textFetcher, bufferFetcher)
+  const page = await getPageInfo(activeTab.id)
+
+  return parseFavicon(page.url, textFetcher, bufferFetcher)
     .pipe(
       map(icon => produce(icon, icon => {
-        icon.url = createAbsoluteUrl(pageUrl, icon.url)
+        icon.url = createAbsoluteUrl(page.url, icon.url)
       }))
     )
 
   function textFetcher(url: string): Awaitable<string> {
-    if (url === pageUrl) {
-      return html
+    if (url === page.url) {
+      return page.html
     } else {
-      return fetch(createAbsoluteUrl(pageUrl, url))
+      return fetch(createAbsoluteUrl(page.url, url))
         .then(res => res.text())
     }
   }
 
   function bufferFetcher(url: string): Awaitable<ArrayBuffer> {
-    return fetch(createAbsoluteUrl(pageUrl, url))
+    return fetch(createAbsoluteUrl(page.url, url))
       .then(res => res.arrayBuffer())
   }
 }

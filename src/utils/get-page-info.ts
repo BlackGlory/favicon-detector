@@ -1,14 +1,23 @@
-export async function getPageInfo(): Promise<{
+import assert from 'assert'
+import browser from 'webextension-polyfill'
+
+export async function getPageInfo(tabId: number): Promise<{
   url: string
-  html: string
+, html: string
 }> {
-  const result = await browser.tabs.executeScript({
-    code: `({
-      url: document.URL
-    , html: document.querySelector('html').outerHTML
-    })`
-  , runAt: 'document_end'
+  const results = await browser.scripting.executeScript({
+    target: { tabId }
+  , injectImmediately: false
+  , func: () => {
+      return {
+        url: document.URL
+      , html: document.documentElement.outerHTML
+      }
+    }
   })
 
-  return result[0]
+  const result = results[0].result
+  assert(result, 'The result is undefined')
+
+  return result
 }

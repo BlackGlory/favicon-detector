@@ -2,7 +2,7 @@
   "name": "__MSG_extensionName__"
 , "author": "BlackGlory"
 , "version": "3.1.0"
-, "manifest_version": 2
+, "manifest_version": 3
 , "default_locale": "en"
 , "description": "__MSG_extensionDescription__"
 , "icons": {
@@ -12,7 +12,7 @@
   , "64": "assets/images/icon-64.png"
   , "128": "assets/images/icon-128.png"
   }
-, "browser_action": {
+, "action": {
     "default_title": "__MSG_extensionBrowserActionTitle__"
   , "default_popup": "popup.html"
   , "default_icon": {
@@ -25,6 +25,10 @@
   }
 , "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkRQGhQtxVngxnfz5BysYrl0QF7clqlrdOhQw0BnnuG8k5Ay6Fs3kbpWuXAee7pu2kEQ/+V91IUA6JrT3MswMF3oDWT5gap2+oRq6rZBwz1PWuFpxCimu6XJrVZZmgS+jS4xmmhFVS24CVw5QiEmE2iRLvRnCJLvsvqAuNo5Pv+WuQNciT05NIwgxfFaO5CGq8fvQ0imFtpfc8frCcTBWvbLVRMWj+N+4UQqGJv/qQWvLJPKERl1CgciFsuK1Uh7HX6fH2UsXt4H4gNVr5vmAIQqxEX9Q/qlcJ/4JYgydoGsHDNDby++c4XjWiPr1y6tUCrHSvNM3qp9EauTpTh6oLQIDAQAB"
 , "permissions": [
+    "activeTab"
+  , "scripting"
+  ]
+, "host_permissions": [
     "<all_urls>"
   ]
 }
