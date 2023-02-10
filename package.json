@@ -13,7 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "run-s lint build",
+      "pre-commit": "run-s lint clean build",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
