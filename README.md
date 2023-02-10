@@ -3,7 +3,7 @@
 
 A simple way to detect website icons based on [parse-favicon] library.
 
-[favicon-detector-logo]: https://raw.githubusercontent.com/BlackGlory/favicon-detector/master/src/assets/images/icon-128.png
+[favicon-detector-logo]: src/assets/images/icon-128.png
 [parse-favicon]: https://github.com/BlackGlory/parse-favicon
 
 ## Supported browsers and platforms
