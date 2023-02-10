@@ -6,7 +6,6 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet src",
-    "prepublishOnly": "run-s clean build",
     "clean": "rimraf dist",
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack --watch --config webpack.dev.js"
