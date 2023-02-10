@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2020"
+    "target": "ES2018"
   , "module": "CommonJS"
   , "jsx": "react-jsx"
   , "removeComments": true
@@ -11,9 +11,7 @@
   , "paths": {
       "@src/*": ["src/*"],
       "@utils/*": ["src/utils/*"],
-      "@components/*": ["src/components/*"],
-      "rxjs": ["node_modules/rxjs"],
-      "rxjs/*": ["node_modules/rxjs/*"]
+      "@components/*": ["src/components/*"]
     }
   }
 , "include": [
