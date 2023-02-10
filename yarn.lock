@@ -753,11 +753,6 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.51.tgz#cfd70924a25a3fd32b218e5e420e6897e1ac4f40"
   integrity sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==
 
-"@types/firefox-webext-browser@^109.0.0":
-  version "109.0.0"
-  resolved "https://registry.yarnpkg.com/@types/firefox-webext-browser/-/firefox-webext-browser-109.0.0.tgz#17120057a46985ec7659dfd33589655860419929"
-  integrity sha512-tkEjBP/zZxaS5bv8MH/0kUs3WeUm8KU3Ew1B9BtQQdq5PwtG23SXvAbjxjMSQpoIzbxyWG4Yu4mi1uB2S8W7ng==
-
 "@types/hoist-non-react-statics@*":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
