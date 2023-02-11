@@ -42,7 +42,7 @@ export function Popup() {
       <IconTable
         loading={loading}
         icons={icons}
-      ></IconTable>
+      />
     </Window>
   )
 }

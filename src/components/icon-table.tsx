@@ -66,7 +66,7 @@ export function IconTable(props: IIconTableProps) {
   ]
 
   return (
-    <Table<IIcon>
+    <Table
       rowKey={record => hash(record)}
       loading={loading}
       pagination={false}
