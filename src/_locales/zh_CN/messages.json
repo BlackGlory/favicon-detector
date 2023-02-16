@@ -3,7 +3,7 @@
     "message": "网站图标探测器"
   }
 , "extensionDescription": {
-    "message": "探测网站图标的简单方式."
+    "message": "探测网站图标的简单方式。"
   }
 , "extensionBrowserActionTitle": {
     "message": "分析当前页面的图标"
