@@ -1,4 +1,3 @@
-import React from 'react'
 import Message from 'antd/lib/message'
 import { IconTable } from '@components/icon-table'
 import { Window } from '@components/window'

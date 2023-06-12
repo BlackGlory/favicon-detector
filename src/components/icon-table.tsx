@@ -1,4 +1,3 @@
-import React from 'react'
 import Table, { ColumnsType } from 'antd/lib/table'
 import Message from 'antd/lib/message'
 import { IconImage } from '@components/icon-image'
