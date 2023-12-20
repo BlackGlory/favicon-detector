@@ -1,11 +1,10 @@
 import assert from 'assert'
-import browser from 'webextension-polyfill'
 
 export async function getPageInfo(tabId: number): Promise<{
   url: string
 , html: string
 }> {
-  const results = await browser.scripting.executeScript({
+  const results = await chrome.scripting.executeScript({
     target: { tabId }
   , injectImmediately: false
   , func: () => {
