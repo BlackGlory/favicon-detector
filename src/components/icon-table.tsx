@@ -135,33 +135,41 @@ function CopyableImage(props: React.ComponentPropsWithoutRef<'img'>) {
     )}
     onClick={async () => {
       if (props.src) {
-        const res = await fetch(props.src, { cache: 'force-cache' })
-        const blob = await res.blob()
-
-        const clipboardItem = new ClipboardItem({
-          'text/plain': textToBlob(props.src)
-        , 'text/html': textToBlob(
-            `<img src="${props.src}" />`
-          , 'text/html'
-          )
-        , ...(
-            isSupportedMIMEType(blob.type)
-          ? { [blob.type]: blob }
-          : {}
-          )
-        })
-        await navigator.clipboard.write([clipboardItem])
-
-        Message.success(i18n(
-          isSupportedMIMEType(blob.type)
-        ? 'messageImageCopied'
-        : 'messageImageURLCopied'
-        ))
+        try {
+          await writeImageClipboard(props.src)
+        } catch {
+          await writeImageURLToClipboard(props.src)
+        }
       }
     }}
   />
 
-  function isSupportedMIMEType(mimeType: string): boolean {
-    return ['image/png'].includes(mimeType)
+  async function writeImageClipboard(imageUrl: string): Promise<void> {
+    const res = await fetch(imageUrl, { cache: 'force-cache' })
+    const blob = await res.blob()
+
+    const clipboardItem = new ClipboardItem({
+      'text/plain': textToBlob(imageUrl)
+    , 'text/html': textToBlob(createImgHTML(imageUrl), 'text/html')
+    , [blob.type]: blob
+    })
+    await navigator.clipboard.write([clipboardItem])
+
+    Message.success(i18n('messageImageCopied'))
+  }
+
+  async function writeImageURLToClipboard(imageUrl: string): Promise<void> {
+    const clipboardItem = new ClipboardItem({
+      'text/plain': textToBlob(imageUrl)
+    , 'text/html': textToBlob(createImgHTML(imageUrl), 'text/html')
+    })
+
+    await navigator.clipboard.write([clipboardItem])
+
+    Message.success(i18n('messageImageURLCopied'))
+  }
+
+  function createImgHTML(imageUrl: string): string {
+    return `<img src="${imageUrl}" />`
   }
 }
