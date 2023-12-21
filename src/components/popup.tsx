@@ -33,7 +33,7 @@ export function Popup() {
   })
 
   return (
-    <div className='w-[700px] h-[500px]'>
+    <div className='w-[800px] h-[600px]'>
       <IconTable
         loading={loading}
         icons={icons}

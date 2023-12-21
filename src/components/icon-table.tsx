@@ -65,6 +65,7 @@ export function IconTable(props: IIconTableProps) {
 
   return (
     <Table
+      className='w-full h-full overflow-y-auto'
       rowKey={record => hash(record)}
       loading={loading}
       pagination={false}
