@@ -25,7 +25,7 @@ export function Popup() {
     , error(err) {
         progress.finish()
         console.error(err)
-        Message.error(err.message, NaN)
+        Message.error(err.message, 0)
       }
     , complete() {
         progress.finish()

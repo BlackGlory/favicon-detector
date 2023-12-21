@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* 通过强制固定窗口尺寸, 以修复在弹出Antd.Message时Chrome无法收缩窗口的bug. */
+  html, body {
+    min-width: 800px;
+    min-height: 600px;
+    width: 800px;
+    height: 600px;
+    overflow: hidden;
+  }
+}
+
 @layer utilities {
   .bg-transparent-fake {
     background-image:
