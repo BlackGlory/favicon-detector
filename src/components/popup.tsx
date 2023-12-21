@@ -13,9 +13,9 @@ export function Popup() {
 
   useMountAsync(async () => {
     const progress = new ProgressBar()
-    const observable = await getIconsFromPage()
-
     progress.start()
+
+    const observable = await getIconsFromPage()
     observable.subscribe({
       next(icon) {
         updateIconByHash(icons => {
