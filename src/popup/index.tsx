@@ -1,5 +1,6 @@
-import { createRoot } from 'react-dom/client'
+import '@src/globals.css'
 import 'antd/dist/reset.css'
+import { createRoot } from 'react-dom/client'
 import { Popup } from '@components/popup'
 import { assert } from '@blackglory/prelude'
 

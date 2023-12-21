@@ -1,6 +1,5 @@
 import Table, { ColumnsType } from 'antd/lib/table'
 import Message from 'antd/lib/message'
-import { IconImage } from '@components/icon-image'
 import { isArray, isNull, isString } from '@blackglory/prelude'
 import hash from 'object-hash'
 import { IIcon } from 'parse-favicon'
@@ -110,15 +109,30 @@ function createIconImage(icon: IIcon) {
   if (icon.size) {
     if (isArray<ISize>(icon.size)) {
       const size = getMaxSize(icon.size)
-      return <IconImage src={icon.url} width={size.width} height={size.height} />
+      return <IconImage
+        src={icon.url}
+        width={size.width}
+        height={size.height}
+      />
     } else if (icon.size !== 'any') {
-      return <IconImage src={icon.url} width={icon.size.width} height={icon.size.height} />
+      return <IconImage
+        src={icon.url}
+        width={icon.size.width}
+        height={icon.size.height}
+      />
     }
   }
-  return <IconImage src={icon.url} />
+  return <img src={icon.url} />
 }
 
 function copyIconUrl(icon: IIcon): void {
   setClipboard(icon.url)
   Message.success(i18n('messageIconUrlCopied'))
+}
+
+function IconImage(props: React.ComponentPropsWithoutRef<'img'>) {
+  return <img
+    {...props}
+    className='bg-transparent-fake max-w-[256px] max-h-[256px]'
+  />
 }
