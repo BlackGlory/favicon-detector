@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extensionName__"
 , "author": "BlackGlory"
-, "version": "4.0.0"
+, "version": "4.1.0"
 , "manifest_version": 3
 , "default_locale": "en"
 , "description": "__MSG_extensionDescription__"
