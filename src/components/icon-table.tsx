@@ -66,6 +66,7 @@ export function IconTable({ icons }: IIconTableProps) {
       className='w-full h-full overflow-y-auto'
       rowKey={record => hash(record)}
       sticky={true}
+      tableLayout='auto'
       pagination={false}
       dataSource={icons}
       columns={columns}
