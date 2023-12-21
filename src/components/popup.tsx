@@ -15,22 +15,28 @@ export function Popup() {
     const progress = new ProgressBar()
     progress.start()
 
-    const observable = await getIconsFromPage()
-    observable.subscribe({
-      next(icon) {
-        updateIconByHash(icons => {
-          icons[hash(icon)] = icon
-        })
-      }
-    , error(err) {
-        progress.finish()
-        console.error(err)
-        Message.error(err.message, 0)
-      }
-    , complete() {
-        progress.finish()
-      }
-    })
+    try {
+      const observable = await getIconsFromPage()
+      observable.subscribe({
+        next(icon) {
+          updateIconByHash(icons => {
+            icons[hash(icon)] = icon
+          })
+        }
+      , error(err) {
+          progress.finish()
+          console.error(err)
+          Message.error(err.message, 0)
+        }
+      , complete() {
+          progress.finish()
+        }
+      })
+    } catch (e) {
+      progress.finish()
+
+      throw e
+    }
   })
 
   return (
