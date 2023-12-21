@@ -1,6 +1,6 @@
+import ProgressBar from '@badrap/bar-of-progress'
 import Message from 'antd/lib/message'
 import { IconTable } from '@components/icon-table'
-import { useState } from 'react'
 import { useImmer } from 'use-immer'
 import hash from 'object-hash'
 import { IIcon } from 'parse-favicon'
@@ -8,13 +8,14 @@ import { getIconsFromPage } from '@utils/get-icons-from-page'
 import { useMountAsync } from 'extra-react-hooks'
 
 export function Popup() {
-  const [loading, setLoading] = useState(true)
   const [iconByHash, updateIconByHash] = useImmer<Record<string, IIcon>>({})
   const icons: IIcon[] = Object.values(iconByHash)
 
   useMountAsync(async () => {
+    const progress = new ProgressBar()
     const observable = await getIconsFromPage()
 
+    progress.start()
     observable.subscribe({
       next(icon) {
         updateIconByHash(icons => {
@@ -22,22 +23,19 @@ export function Popup() {
         })
       }
     , error(err) {
-        setLoading(false)
+        progress.finish()
         console.error(err)
         Message.error(err.message, NaN)
       }
     , complete() {
-        setLoading(false)
+        progress.finish()
       }
     })
   })
 
   return (
     <div className='w-[800px] h-[600px]'>
-      <IconTable
-        loading={loading}
-        icons={icons}
-      />
+      <IconTable icons={icons} />
     </div>
   )
 }

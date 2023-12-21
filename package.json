@@ -55,6 +55,7 @@
     "webpack-merge": "^5.10.0"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.2.2",
     "@blackglory/prelude": "^0.3.4",
     "antd": "^5.12.4",
     "extra-react-hooks": "^0.6.5",

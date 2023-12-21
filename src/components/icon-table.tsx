@@ -16,11 +16,9 @@ interface ISize {
 
 interface IIconTableProps {
   icons: IIcon[]
-  loading: boolean
 }
 
-export function IconTable(props: IIconTableProps) {
-  const { icons, loading } = props
+export function IconTable({ icons }: IIconTableProps) {
   const columns: ColumnsType<IIcon> = [
     {
       title: i18n('titleIcon')
@@ -67,7 +65,6 @@ export function IconTable(props: IIconTableProps) {
     <Table
       className='w-full h-full overflow-y-auto'
       rowKey={record => hash(record)}
-      loading={loading}
       sticky={true}
       pagination={false}
       dataSource={icons}
