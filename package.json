@@ -58,6 +58,7 @@
     "@badrap/bar-of-progress": "^0.2.2",
     "@blackglory/prelude": "^0.3.4",
     "antd": "^5.12.4",
+    "extra-blob": "^0.1.2",
     "extra-react-hooks": "^0.6.5",
     "extra-utils": "^5.5.2",
     "extra-webextension": "^0.4.0",
@@ -69,6 +70,7 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "rxjs": "^7.8.1",
+    "tailwind-merge": "^2.1.0",
     "use-immer": "^0.9.0"
   }
 }

@@ -20,7 +20,10 @@
 , "titleIcon": {
     "message": "Icon"
   }
-, "messageIconUrlCopied": {
-    "message": "Icon URL copied"
+, "messageImageURLCopied": {
+    "message": "Image URL copied"
+  }
+, "messageImageCopied": {
+    "message": "Image copied"
   }
 }

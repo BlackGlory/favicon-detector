@@ -5,9 +5,10 @@ import hash from 'object-hash'
 import { IIcon } from 'parse-favicon'
 import { i18n } from '@utils/i18n'
 import { getMaxSize } from '@utils/get-max-size'
-import { setClipboard } from '@utils/set-clipboard'
 import { computeIconArea } from '@utils/compute-icon-area'
 import { getUniqueIconTypes } from '@utils/get-unique-icon-types'
+import { twMerge } from 'tailwind-merge'
+import { textToBlob } from 'extra-blob'
 
 interface ISize {
   width: number
@@ -25,9 +26,7 @@ export function IconTable({ icons }: IIconTableProps) {
     , dataIndex: 'url'
     , key: 'icon'
     , render(_, icon: IIcon) {
-        return <a onClick={() => copyIconUrl(icon)}>
-          {createIconImage(icon)}
-        </a>
+        return <Icon icon={icon} />
       }
     }
   , {
@@ -105,34 +104,64 @@ function iconSizeToString(icon: IIcon): string {
   }
 }
 
-function createIconImage(icon: IIcon) {
+function Icon({ icon }: { icon: IIcon }) {
   if (icon.size) {
     if (isArray<ISize>(icon.size)) {
       const size = getMaxSize(icon.size)
-      return <IconImage
+      return <CopyableImage
         src={icon.url}
         width={size.width}
         height={size.height}
       />
     } else if (icon.size !== 'any') {
-      return <IconImage
+      return <CopyableImage
         src={icon.url}
         width={icon.size.width}
         height={icon.size.height}
       />
     }
   }
-  return <img src={icon.url} />
+
+  return <CopyableImage src={icon.url} />
 }
 
-function copyIconUrl(icon: IIcon): void {
-  setClipboard(icon.url)
-  Message.success(i18n('messageIconUrlCopied'))
-}
-
-function IconImage(props: React.ComponentPropsWithoutRef<'img'>) {
+function CopyableImage(props: React.ComponentPropsWithoutRef<'img'>) {
   return <img
     {...props}
-    className='bg-transparent-fake max-w-[256px] max-h-[256px]'
+    className={twMerge(
+      'bg-transparent-fake max-w-[256px] max-h-[256px]'
+    , props.src && 'cursor-pointer'
+    , props.className
+    )}
+    onClick={async () => {
+      if (props.src) {
+        const res = await fetch(props.src, { cache: 'force-cache' })
+        const blob = await res.blob()
+
+        const clipboardItem = new ClipboardItem({
+          'text/plain': textToBlob(props.src)
+        , 'text/html': textToBlob(
+            `<img src="${props.src}" />`
+          , 'text/html'
+          )
+        , ...(
+            isSupportedMIMEType(blob.type)
+          ? { [blob.type]: blob }
+          : {}
+          )
+        })
+        await navigator.clipboard.write([clipboardItem])
+
+        Message.success(i18n(
+          isSupportedMIMEType(blob.type)
+        ? 'messageImageCopied'
+        : 'messageImageURLCopied'
+        ))
+      }
+    }}
   />
+
+  function isSupportedMIMEType(mimeType: string): boolean {
+    return ['image/png'].includes(mimeType)
+  }
 }
