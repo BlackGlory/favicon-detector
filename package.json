@@ -59,7 +59,7 @@
     "@blackglory/prelude": "^0.3.4",
     "antd": "^5.12.4",
     "extra-blob": "^0.1.2",
-    "extra-react-hooks": "^0.6.5",
+    "extra-react-hooks": "^0.6.6",
     "extra-utils": "^5.5.2",
     "extra-webextension": "^0.4.0",
     "immer": "^10.0.3",
