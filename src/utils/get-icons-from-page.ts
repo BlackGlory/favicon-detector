@@ -15,7 +15,7 @@ export async function getIconsFromPage(): Promise<Observable<IIcon>> {
   return parseFavicon(page.url, textFetcher, bufferFetcher)
     .pipe(
       map(icon => produce(icon, icon => {
-        icon.url = createAbsoluteUrl(page.url, icon.url)
+        icon.url = new URL(icon.url, page.url).href
       }))
     )
 
@@ -23,17 +23,13 @@ export async function getIconsFromPage(): Promise<Observable<IIcon>> {
     if (url === page.url) {
       return page.html
     } else {
-      return fetch(createAbsoluteUrl(page.url, url))
+      return fetch(url)
         .then(res => res.text())
     }
   }
 
   function bufferFetcher(url: string): Awaitable<ArrayBuffer> {
-    return fetch(createAbsoluteUrl(page.url, url))
+    return fetch(url)
       .then(res => res.arrayBuffer())
   }
-}
-
-function createAbsoluteUrl(base: string, url: string) {
-  return new URL(url, base).href
 }

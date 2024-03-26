@@ -3845,10 +3845,10 @@ parent-module@^1.0.0:
   dependencies:
     callsites "^3.0.0"
 
-parse-favicon@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/parse-favicon/-/parse-favicon-7.0.0.tgz#326b67d5c13555ba1e336981ba749b5d84cb536d"
-  integrity sha512-1X2eFrViEJu597ztfwBsN22ApN/DpTtwoww2yWvq54wkHrzIFafaN+up4lma5N1ZJzm0YTnWI4raVQelsHw1fA==
+parse-favicon@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/parse-favicon/-/parse-favicon-7.0.1.tgz#1f6c79e6fd536973909e5d9b71a9c94ced8d3295"
+  integrity sha512-228GHRBBs9Prldd+tO/u78X+0Q3ab36T8/nB+Fm2/DQjUQLlnw/lZr66Sm8ivgA/9e9AcV9MPsLzkneT+xWJWQ==
   dependencies:
     "@blackglory/errors" "^3.0.0"
     "@blackglory/prelude" "^0.3.1"
