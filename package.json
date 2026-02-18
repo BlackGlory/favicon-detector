@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "favicion-detector",
+  "name": "favicon-detector",
   "repository": "git@github.com:BlackGlory/favicon-detector.git",
   "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
   "license": "MIT",
