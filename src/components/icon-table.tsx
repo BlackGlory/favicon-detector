@@ -9,6 +9,7 @@ import { computeIconArea } from '@utils/compute-icon-area'
 import { getUniqueIconTypes } from '@utils/get-unique-icon-types'
 import { twMerge } from 'tailwind-merge'
 import { textToBlob } from 'extra-blob'
+import { encode } from 'html-entities'
 
 interface ISize {
   width: number
@@ -170,6 +171,6 @@ function CopyableImage(props: React.ComponentPropsWithoutRef<'img'>) {
   }
 
   function createImgHTML(imageUrl: string): string {
-    return `<img src="${imageUrl}" />`
+    return `<img src="${encode(imageUrl)}" />`
   }
 }

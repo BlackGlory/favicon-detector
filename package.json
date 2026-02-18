@@ -62,6 +62,7 @@
     "extra-react-hooks": "^0.6.6",
     "extra-utils": "^5.5.2",
     "extra-webextension": "^0.4.0",
+    "html-entities": "^2.6.0",
     "immer": "^10.0.3",
     "iterable-operator": "^4.0.6",
     "object-hash": "^3.0.0",
