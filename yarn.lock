@@ -197,7 +197,7 @@
     extra-dom "^0.5.3"
     extra-utils "^3.3.0"
 
-"@blackglory/structures@^0.11.4":
+"@blackglory/structures@^0.11.3", "@blackglory/structures@^0.11.4":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@blackglory/structures/-/structures-0.11.8.tgz#086f7285484e626374ed76881e2ccb21e9491ecf"
   integrity sha512-52LPP5F9QsuyUmkQhzdWPKhX+bRhbQHMNVZy4KjNZCuSlbWu++RgXSSt6Z5DUk/Xpkhd4HtNU1IfMtZ3tg1nIw==
@@ -439,6 +439,14 @@
   version "8.56.0"
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
+
+"@extra-memoize/memory-cache@^0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@extra-memoize/memory-cache/-/memory-cache-0.2.11.tgz#366dcd6b3b195b63c9cff81c31828a7c778d01c5"
+  integrity sha512-3GhFBlEx4aCSGDB3Z8o33dcc4rEzSvfFIppeL6tyM2Nq6UK6OgylgIMXAigTm46LDT2hqjXlN92d9OAB7KIjrQ==
+  dependencies:
+    "@blackglory/prelude" "^0.2.4"
+    "@blackglory/structures" "^0.11.3"
 
 "@humanwhocodes/config-array@^0.11.13":
   version "0.11.13"
@@ -2236,6 +2244,14 @@ extra-lazy@^2.0.1:
   dependencies:
     extra-utils "^5.1.0"
 
+extra-memoize@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/extra-memoize/-/extra-memoize-0.9.3.tgz#d8714e3be80adf77a16fa9d56c4cbc39498637ef"
+  integrity sha512-XijSfl/cNAkfKKVV2J40jquo79YLcf92uU9cL1V8ObTaH7PAWLprA+GUrzg9/ie3/a4987nYtSkTRST609QmBg==
+  dependencies:
+    "@blackglory/prelude" "^0.2.2"
+    extra-json-stable-stringify "^0.1.1"
+
 extra-promise@^4.4.0:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/extra-promise/-/extra-promise-4.4.1.tgz#60499f0008265202e9505d974a2cd40d7abdae4a"
@@ -3850,15 +3866,17 @@ parent-module@^1.0.0:
   dependencies:
     callsites "^3.0.0"
 
-parse-favicon@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/parse-favicon/-/parse-favicon-7.0.1.tgz#1f6c79e6fd536973909e5d9b71a9c94ced8d3295"
-  integrity sha512-228GHRBBs9Prldd+tO/u78X+0Q3ab36T8/nB+Fm2/DQjUQLlnw/lZr66Sm8ivgA/9e9AcV9MPsLzkneT+xWJWQ==
+parse-favicon@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/parse-favicon/-/parse-favicon-7.0.3.tgz#b22339760a489a73ddda7ef6c144751180ecd6a6"
+  integrity sha512-NV/0m0FU6nHFGLTCznbMgJkMQ7On+NQGJE4oROxlbYa08Rd3MGXARU38OG3caj7D9gdNdHJ2JKgFDKvGJakkqw==
   dependencies:
     "@blackglory/errors" "^3.0.0"
     "@blackglory/prelude" "^0.3.1"
     "@blackglory/query" "^0.5.6"
+    "@extra-memoize/memory-cache" "^0.2.11"
     extra-dom "^0.6.1"
+    extra-memoize "^0.9.3"
     extra-promise "^6.0.3"
     extra-utils "^5.0.1"
     file-type "^18.2.0"
