@@ -30,4 +30,9 @@
 , "host_permissions": [
     "<all_urls>"
   ]
+, "browser_specific_settings": {
+    "gecko": {
+      "id": "{5eddefd2-1d1e-4e7b-b9b5-1da06d23588b}"
+    }
+  }
 }
