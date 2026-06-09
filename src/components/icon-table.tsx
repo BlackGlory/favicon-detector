@@ -130,7 +130,7 @@ function CopyableImage(props: React.ComponentPropsWithoutRef<'img'>) {
   return <img
     {...props}
     className={twMerge(
-      'bg-transparent-fake max-w-[256px] max-h-[256px]'
+      'bg-transparent-pattern max-w-[256px] max-h-[256px]'
     , props.src && 'cursor-pointer'
     , props.className
     )}
